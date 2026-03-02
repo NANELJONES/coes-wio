@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+:root {
+  --primary_color: #0073BD;
+}
+
+@theme {
+  --color-primary_color: #0073BD;
+  --color-secondary_color: #16B2FF;
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* .columns_container {
+  columns: 3 250px;
+  column-gap: 2rem;
+} */
+
+
+.center-align {
+  text-align: center;
+}
+
+/* Project button styles – use throughout the app */
+.primary_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--primary_color);
+  transition: opacity 0.2s ease;
+}
+
+.primary_button:hover {
+  opacity: 0.9;
+}
+
+.secondary_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: var(--primary_color);
+  background-color: transparent;
+  border: 2px solid var(--primary_color);
+  transition: background-color 0.2s ease;
+}
+
+.secondary_button:hover {
+  background-color: rgba(0, 115, 189, 0.05);
+}
+
+/* Section headings – large, primary color, lowercase */
+.heading_text {
+  @apply font-bold lowercase m-0 leading-[1.1] text-primary_color text-[5em] md:text-[8em];
+}
+
+/* Override heading_text color when on dark background (e.g. Partners) */
+.heading_text.heading_text--light {
+  @apply text-white;
+}
+
+/* Slow spin animation */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* button {
+  @apply text-white p-4 rounded-full px-6 border border-white bg-gradient-to-r from-primary_color/50 to-secondary_color/10;
+
+} */
+
+/* .chrome-border {
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: conic-gradient(
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.3)
+  );
+  animation: rotate 3s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.chrome-mask {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+
+.huge {
+  @apply text-white leading-[0.5em] text-[2.5em] lg:text-[5em];
+}
+
+.clip {
+  clip-path: polygon(15% 0, 100% 0, 100% 86%, 75% 100%, 0 100%, 0 21%);
+}
+
+/* Responsive Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+
+
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.75rem;
+  line-height: 1.4;
+}
+
+h4 {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+h5 {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+
+@layer layout {
+  .layout {
+    @apply mx-auto w-full max-w-[1200px] pt-[2.5rem] pb-[2.5rem];
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  h5 {
+    font-size: 1rem;
+  }
+
+  h6,
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  h5,
+  h6,
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+/* Image Trail Animation */
+@keyframes trailFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50px);
+  }
+}
+
+.animate-trail-fade {
+  animation: trailFade 3s ease-out forwards;
+}
+
+.break-inside-avoid {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.break-after-avoid {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.image_grid {
+  column-count: 1;
+  column-gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .image_grid {
+    column-count: 2;
+  }
+}
+
+.image_grid>* {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+}
+
+.image_grid img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 400px !important;
+}
