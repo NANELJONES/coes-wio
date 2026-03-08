@@ -1,72 +1,102 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { fetchGalleryEntries, isVideoUrl } from "../../lib/hygraph";
 
 const PAGE_SIZE = 10;
+const VIDEO_EXT = /\.(m4v|mov|mp4|ogg|ogv|webm)(\?.*)?$/i;
+const isVideoUrl = (url = "") => VIDEO_EXT.test(url);
 
 export default function GalleryPage() {
   const [albums, setAlbums] = useState([]);
   const [visibleCounts, setVisibleCounts] = useState({});
-  const [entrySkip, setEntrySkip] = useState(0);
   const [hasNextEntry, setHasNextEntry] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const sentinelRef = useRef(null);
+  const initializedRef = useRef(false);
+
+  const albumsRef = useRef([]);
+  const visibleCountsRef = useRef({});
+  const entrySkipRef = useRef(0);
+  const hasNextEntryRef = useRef(true);
+  const isLoadingRef = useRef(false);
+
+  const syncAlbums = useCallback((nextAlbums) => {
+    albumsRef.current = nextAlbums;
+    setAlbums(nextAlbums);
+  }, []);
+
+  const syncVisibleCounts = useCallback((nextVisibleCounts) => {
+    visibleCountsRef.current = nextVisibleCounts;
+    setVisibleCounts(nextVisibleCounts);
+  }, []);
 
   const loadNextEntry = useCallback(async () => {
-    if (isLoading || !hasNextEntry) return;
+    if (isLoadingRef.current || !hasNextEntryRef.current) return;
+
+    isLoadingRef.current = true;
     setIsLoading(true);
     setError("");
 
     try {
-      const { entries, hasNextPage } = await fetchGalleryEntries({
-        first: 1,
-        skip: entrySkip,
-      });
-
-      if (entries.length > 0) {
-        setAlbums((prev) => [...prev, entries[0]]);
-        setVisibleCounts((prev) => ({
-          ...prev,
-          [entrySkip]: Math.min(PAGE_SIZE, entries[0].media.length),
-        }));
+      const response = await fetch(
+        `/api/gallery?first=1&skip=${entrySkipRef.current}`,
+        { cache: "no-store" }
+      );
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(payload?.message || "Failed to fetch gallery");
       }
 
-      setEntrySkip((prev) => prev + entries.length);
-      setHasNextEntry(hasNextPage && entries.length > 0);
+      const { entries, hasNextPage } = payload;
+
+      if (entries.length > 0) {
+        const newAlbumIndex = albumsRef.current.length;
+        syncAlbums([...albumsRef.current, entries[0]]);
+        syncVisibleCounts({
+          ...visibleCountsRef.current,
+          [newAlbumIndex]: Math.min(PAGE_SIZE, entries[0].media.length),
+        });
+      }
+
+      entrySkipRef.current += entries.length;
+      hasNextEntryRef.current = Boolean(hasNextPage && entries.length > 0);
+      setHasNextEntry(hasNextEntryRef.current);
     } catch (err) {
       setError(err?.message || "Failed to load gallery");
     } finally {
+      isLoadingRef.current = false;
       setIsLoading(false);
     }
-  }, [entrySkip, hasNextEntry, isLoading]);
+  }, [syncAlbums, syncVisibleCounts]);
 
   const loadMore = useCallback(async () => {
-    if (isLoading) return;
+    if (isLoadingRef.current) return;
 
-    if (albums.length === 0) {
+    if (albumsRef.current.length === 0) {
       await loadNextEntry();
       return;
     }
 
-    const lastAlbumIndex = albums.length - 1;
-    const lastAlbum = albums[lastAlbumIndex];
-    const visible = visibleCounts[lastAlbumIndex] ?? 0;
+    const lastAlbumIndex = albumsRef.current.length - 1;
+    const lastAlbum = albumsRef.current[lastAlbumIndex];
+    const visible = visibleCountsRef.current[lastAlbumIndex] ?? 0;
 
     if (visible < lastAlbum.media.length) {
-      setVisibleCounts((prev) => ({
-        ...prev,
+      syncVisibleCounts({
+        ...visibleCountsRef.current,
         [lastAlbumIndex]: Math.min(visible + PAGE_SIZE, lastAlbum.media.length),
-      }));
+      });
       return;
     }
 
-    if (hasNextEntry) {
+    if (hasNextEntryRef.current) {
       await loadNextEntry();
     }
-  }, [albums, hasNextEntry, isLoading, loadNextEntry, visibleCounts]);
+  }, [loadNextEntry, syncVisibleCounts]);
 
   useEffect(() => {
+    if (initializedRef.current) return;
+    initializedRef.current = true;
     loadMore();
   }, [loadMore]);
 
@@ -109,6 +139,7 @@ export default function GalleryPage() {
         return (
           <section key={`${album.title}-${albumIndex}`} className="mb-14">
             <div className="mb-5 border-b border-primary_color/25 pb-3">
+              <h2 className="text-3xl md:text-5xl">{album.title}</h2>
               {album.description ? (
                 <p className="mt-2 max-w-[760px] text-sm md:text-base">
                   {album.description}
