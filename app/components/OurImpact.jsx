@@ -77,7 +77,7 @@ const OurImpact = () => {
             />
             <FadeUpInView className="relative aspect-[16/7] w-full overflow-hidden" delay={0.08}>
               <Image
-                src="/ocean1.jpg"
+                src="/day 2/comp-4.jpg"
                 alt="Ocean – COES-WIO network"
                 fill
                 className="object-cover"

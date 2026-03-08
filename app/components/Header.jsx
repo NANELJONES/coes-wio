@@ -1,10 +1,27 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import FadeUpInView from "./animations/FadeUpInView";
 import AnimatedSentence from "./animations/AnimatedSentence";
+import ImageSequence from "./ImageSequence";
+import dayImages from "../data/data";
+
+const HERO_SEQUENCE_IMAGES = [
+  dayImages["day 0"][0],
+  dayImages["day 1"][1],
+  dayImages["day 2"][2],
+  dayImages["day 3"][0],
+  dayImages["day 2"][4],
+];
+
+const INLINE_SEQUENCE_IMAGES = [
+  dayImages["day 0"][1],
+  dayImages["day 1"][0],
+  dayImages["day 2"][0],
+  dayImages["day 3"][2],
+  dayImages["day 3"][1],
+];
 
 const SLIDES = [
   {
@@ -16,7 +33,7 @@ const SLIDES = [
   {
     items: [
       "Advancing", "Ocean", "Science",
-      { type: "image", src: "/ocean1.jpg", alt: "Ocean" },
+      { type: "sequence", images: INLINE_SEQUENCE_IMAGES, duration: 1800 },
       "Across", "the", "Western", "Indian", "Ocean",
     ],
   },
@@ -38,7 +55,7 @@ const AnimatedSlide = ({ slide, onAnimationComplete }) => {
       className="flex flex-wrap gap-x-10 gap-y-1 items-baseline"
     >
       {items.map((item, index) => {
-        const isImage = typeof item === "object" && item?.type === "image";
+        const isSequence = typeof item === "object" && item?.type === "sequence";
         return (
           <motion.span
             key={`${slide}-${index}`}
@@ -51,10 +68,13 @@ const AnimatedSlide = ({ slide, onAnimationComplete }) => {
             }}
             className="inline-flex items-baseline"
           >
-            {isImage ? (
-              <img src={item.src} alt={item.alt} className="relative inline-block align-baseline rounded-[0.4em] overflow-hidden shrink-0 w-full h-full rounded-full max-w-[100px] max-h-[150px] max-w-[150px] max-h-[150px] lg:max-w-[200px]  lg:max-h-[150px]">
-           
-              </img>
+            {isSequence ? (
+              <span className="inline-block h-[90px] w-[140px] overflow-hidden rounded-full align-baseline lg:h-[130px] lg:w-[200px]">
+                <ImageSequence
+                  images={item.images}
+                  duration={item.duration}
+                />
+              </span>
             ) : (
               <span
                 className="text-[3em] md:text-[3.5rem] xl:text-[5em] 2xl:text-[5.7em] leading-tight font-bold"
@@ -144,13 +164,7 @@ const Header = () => {
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start justify-around w-full">
             <FadeUpInView className="w-full md:w-[280px] lg:w-[340px] flex-shrink-0">
               <div className="relative aspect-[16/10] rounded-lg overflow-hidden">
-                <Image
-                  src="/ocean1.jpg"
-                  alt="Ocean - Coastal Ocean Environment School"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 400px"
-                />
+                <ImageSequence images={HERO_SEQUENCE_IMAGES} duration={2200} />
               </div>
             </FadeUpInView>
             <div className="flex-1 md:max-w-[50%]">

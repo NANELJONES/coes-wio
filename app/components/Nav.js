@@ -8,6 +8,7 @@ const SECTION_LINKS = [
   { label: "Impact", href: "#impact" },
   { label: "Partners", href: "#partners" },
   { label: "Themes", href: "#themes" },
+  { label: "Gallery", href: "/gallery" },
 ];
 
 const Nav = () => {

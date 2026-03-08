@@ -5,6 +5,16 @@ import DotListItem from "./DotListItem";
 import { motion } from "framer-motion";
 import FadeUpInView from "./animations/FadeUpInView";
 import AnimatedSentence from "./animations/AnimatedSentence";
+import ImageSwiper from "./ImageSwiper";
+import dayImages from "../data/data";
+
+const ABOUT_SWIPER_IMAGES = [
+  dayImages["day 0"][0],
+  dayImages["day 1"][1],
+  dayImages["day 2"][3],
+  dayImages["day 3"][2],
+  dayImages["day 2"][1],
+];
 
 const AboutUs = () => {
   return (
@@ -141,6 +151,14 @@ const AboutUs = () => {
             </p>
           </FadeUpInView>
 
+
+          
+          <FadeUpInView>
+            <div className="h-[220px] w-full overflow-hidden rounded-lg sm:h-[260px] md:h-[300px]">
+              <ImageSwiper images={ABOUT_SWIPER_IMAGES} duration={2200} />
+            </div>
+          </FadeUpInView>
+
           <div className="space-y-4 flex flex-col gap-[3em]  gap-4 w-full" style={{ color: "var(--primary_color)" }}>
            
            <div className="">
@@ -177,6 +195,8 @@ const AboutUs = () => {
         </div>
             
             </div>
+
+
           
           </div>
         </div>
