@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { FiCircle } from "react-icons/fi";
 import FadeUpInView from "./animations/FadeUpInView";
-import AnimatedSentence from "./animations/AnimatedSentence";
 
 const OurImpact = () => {
   const quickFacts = [
@@ -17,9 +16,9 @@ const OurImpact = () => {
 
   return (
     <section className="w-full text-primary_color">
-      <div className="mx-auto w-full px-4 py-10 md:px-8 md:py-14">
+      <div className="mx-auto w-full px-4 py-10 md:px-8 md:py-14 regular_div">
         <FadeUpInView>
-          <h2 className="heading_text font-light">our impact</h2>
+          <h2 className="heading_text">our impact</h2>
         </FadeUpInView>
 
         <div className="mt-5 flex items-center gap-2 md:mt-6">
@@ -28,13 +27,11 @@ const OurImpact = () => {
           <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-primary_color" />
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-12">
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           <div>
-            <AnimatedSentence
-              as="p"
-              className="max-w-[560px] text-xl leading-relaxed md:text-3xl"
-              text="The inaugural COES-WIO 2025 programme achieved:"
-            />
+            <p className="body_text max-w-[560px]">
+              The inaugural COES-WIO 2025 programme achieved:
+            </p>
 
             <div className="mt-8 space-y-2">
               {quickFacts.map((fact, index) => (
@@ -45,7 +42,7 @@ const OurImpact = () => {
                     <span className="text-[4rem] leading-[0.8] md:text-[6rem]">
                       {fact.value}
                     </span>
-                    <span className="pb-2 text-lg leading-none md:text-2xl">
+                    <span className="pb-2 body_text">
                       {fact.label}
                     </span>
                   </div>
@@ -61,7 +58,7 @@ const OurImpact = () => {
                     className="mt-2 h-3 w-3 shrink-0 fill-current"
                     aria-hidden
                   />
-                  <p className="max-w-[640px] text-lg leading-snug md:text-3xl">
+                  <p className="body_text max-w-[640px]">
                     {text}
                   </p>
                 </FadeUpInView>
@@ -70,11 +67,9 @@ const OurImpact = () => {
           </div>
 
           <div className="flex flex-col gap-6 md:gap-8">
-            <AnimatedSentence
-              as="h3"
-              className="max-w-[560px] text-4xl leading-tight md:text-6xl"
-              text="We are a multiregional network in action"
-            />
+            <h3 className="subheading_text max-w-[560px]">
+              We are a multiregional network in action
+            </h3>
             <FadeUpInView className="relative aspect-[16/7] w-full overflow-hidden" delay={0.08}>
               <Image
                 src="/day 2/comp-4.jpg"
@@ -84,7 +79,7 @@ const OurImpact = () => {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </FadeUpInView>
-            <FadeUpInView as="p" className="max-w-[680px] text-base leading-relaxed md:text-xl" delay={0.12}>
+            <FadeUpInView as="p" className="body_text max-w-[680px]" delay={0.12}>
               Beyond training, COES-WIO fostered lasting professional networks
               that will contribute to future research collaboration, policy
               engagement, and sustainable marine management throughout the

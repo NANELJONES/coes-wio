@@ -3,7 +3,7 @@ import { FiCircle } from "react-icons/fi";
 
 const wrapperClass = "flex items-center gap-2";
 const iconClass = "w-2 h-2 shrink-0 fill-current";
-const textClass = "m-0 text-sm !text-[1.3em] border-b border-primary_color md:text-base";
+const textClass = "body_text border-b border-primary_color";
 
 export default function DotListItem({ children, textClassName }) {
   return (

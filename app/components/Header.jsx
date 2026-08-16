@@ -77,7 +77,7 @@ const AnimatedSlide = ({ slide, onAnimationComplete }) => {
               </span>
             ) : (
               <span
-                className="text-[3em] md:text-[3.5rem] xl:text-[5em] 2xl:text-[5.7em] leading-tight font-bold"
+                className="text-[3em] md:text-[3.5rem]  lg:text-[5em] leading-tight "
                 style={{ color: "var(--primary_color)" }}
               >
                 {item}
@@ -172,19 +172,19 @@ const Header = () => {
                 as="h5"
                 className="text-base md:text-lg leading-relaxed mb-6"
                 style={{ color: "var(--primary_color)" }}
-                text="The Coastal Ocean Environment School in the Western Indian Ocean (COES-WIO) is a regional summer school strengthening ocean science capacity across Africa and beyond."
+                text="The Coastal Ocean Environment School in the Western Indian Ocean (COES-WIO) is a regional school strengthening ocean science capacity across East Africa and beyond."
               />
               <br/>
               <FadeUpInView className="flex flex-wrap gap-4" delay={0.08}>
-                <a
-                  href="#apply"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white transition-colors hover:opacity-90"
-                  style={{ backgroundColor: "var(--primary_color)" }}
+                <span
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white/90 cursor-not-allowed"
+                  style={{ backgroundColor: "var(--primary_color)", opacity: 0.45 }}
+                  aria-disabled="true"
                 >
-                  Apply for 2025 School
-                </a>
+                  Applications for 2026 are closed
+                </span>
                 <a
-                  href="#partner"
+                  href="#partners"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 transition-colors hover:bg-primary_color/5"
                   style={{
                     borderColor: "var(--primary_color)",

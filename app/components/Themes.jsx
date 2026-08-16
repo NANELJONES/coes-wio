@@ -65,9 +65,6 @@ const Themes = () => {
           >
             Our programme themes deliver practical skills for ocean professionals.
           </FadeUpInView>
-          {/* <p style={{ color: "var(--primary_color)" }}>
-            Each theme links science, policy, and community impact.
-          </p> */}
           <FadeUpInView
             as="p"
             style={{ color: "var(--primary_color)" }}
@@ -78,7 +75,7 @@ const Themes = () => {
           </FadeUpInView>
         </div>
       </div>
-      <div className="relative  z-10 mx-auto mt-[70vh] w-full max-w-[1200px] px-4 pb-20 md:px-8">
+      <div className="relative z-10 mx-auto mt-[70vh] w-full max-w-[1200px] px-4 pb-20 md:px-8">
         <div className="grid grid-cols-1 items-center justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {PROGRAMME_THEMES.map((theme, index) => (
             <FadeUpInView
@@ -106,10 +103,6 @@ const Themes = () => {
             </FadeUpInView>
           ))}
         </div>
-        {/* <h1 className="mx-auto mt-4 max-w-[980px] text-center text-base leading-relaxed text-primary_color md:text-lg">
-          Each track combined theoretical instruction with practical application,
-          reinforcing real-world skills development.
-        </h1> */}
       </div>
     </section>
   );

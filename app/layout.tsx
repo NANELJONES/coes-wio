@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Comfortaa } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import LenisProvider from "./components/LenisProvider";
 
-const comfortaa = Comfortaa({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-comfortaa",
+  variable: "--font-poppins",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "COESSWIO",
-  description: "The Coastal Ocean Environment School in the Western Indian Ocean (COES-WIO) is a regional summer school strengthening ocean science capacity across Africa and beyond.",
+  title: "COES-WIO",
+  description: "The Coastal Ocean Environment School in the Western Indian Ocean (COES-WIO) is a regional school strengthening ocean science capacity across East Africa and beyond.",
 };
 
 export default function RootLayout({
@@ -24,8 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${comfortaa.variable} ${comfortaa.className} antialiased`}
-      style={{ fontFamily: 'var(--font-comfortaa)' , color: 'var(--primary_color)'}}
+        className={`${poppins.variable} ${poppins.className} antialiased`}
+      style={{ fontFamily: 'var(--font-poppins)' , color: 'var(--primary_color)'}}
       >
         <LenisProvider>
           <Nav />
