@@ -59,8 +59,10 @@ export async function POST(request) {
 
     const schoolLine = `${siteName} (${siteHost(siteLink)})`;
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const from =
-      process.env.RESEND_FROM || `${siteName} <onboarding@resend.dev>`;
+    const fromEmail = process.env.RESEND_FROM || "noreply@coessing.org";
+    const from = fromEmail.includes("<")
+      ? fromEmail
+      : `${siteName} <${fromEmail}>`;
 
     const { error } = await resend.emails.send({
       from,

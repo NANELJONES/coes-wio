@@ -1,16 +1,15 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 
 const SECTION_LINKS = [
   { label: "Home", href: "/#home" },
   { label: "About", href: "/#about" },
-  { label: "Objectives", href: "/#objectives" },
-  { label: "Impact", href: "/#impact" },
-  { label: "Partners", href: "/#partners" },
-  { label: "Themes", href: "/#themes" },
-  { label: "Affiliated", href: "/#affiliated" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Schools", href: "/schools" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Objectives", href: "/#objectives" },
+  { label: "Partners", href: "/#partners" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const Nav = () => {
@@ -19,8 +18,15 @@ const Nav = () => {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-primary_color/15 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-4 md:px-8">
-        <a href="/#home" className="text-lg font-semibold text-primary_color md:text-xl">
-          COES-WIO
+        <a href="/#home" className="flex items-center">
+          <Image
+            src="/Logo.webp"
+            alt="COES-WIO"
+            width={180}
+            height={48}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </a>
 
         <ul className="hidden items-center gap-5 xl:flex">

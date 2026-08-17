@@ -9,6 +9,7 @@ import Partners from "./components/Partners";
 import AffiliatedActions from "./components/AffiliatedActions";
 import FeaturedMentions from "./components/FeaturedMentions";
 import SummerSchools from "./components/SummerSchools";
+import YoutubeContent from "./components/YoutubeContent";
 import ClosingSection from "./components/ClosingSection";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
@@ -47,6 +48,7 @@ export default function Home() {
         <FeaturedMentions />
       </div>
       <SummerSchools />
+      <YoutubeContent />
       {/* <ClosingSection /> */}
       <ContactForm
         siteName="COES-WIO"

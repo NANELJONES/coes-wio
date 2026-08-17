@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import LenisProvider from "./components/LenisProvider";
+import { SchoolProvider } from "@/contexts/SchoolContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,8 +29,10 @@ export default function RootLayout({
       style={{ fontFamily: 'var(--font-poppins)' , color: 'var(--primary_color)'}}
       >
         <LenisProvider>
-          <Nav />
-          {children}
+          <SchoolProvider>
+            <Nav />
+            {children}
+          </SchoolProvider>
         </LenisProvider>
       </body>
     </html>

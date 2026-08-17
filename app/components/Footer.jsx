@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { HiMail, HiLocationMarker } from "react-icons/hi";
 import FadeUpInView from "./animations/FadeUpInView";
 
@@ -11,6 +12,7 @@ const SECTION_LINKS = [
   { label: "Programme Themes", href: "#themes" },
   { label: "Affiliated Actions", href: "#affiliated" },
   { label: "Contact Us", href: "#contact" },
+  { label: "Schools", href: "/schools" },
   { label: "Gallery", href: "/gallery" },
 ];
 
@@ -21,6 +23,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
             <FadeUpInView>
+              <a href="#home" className="mb-4 inline-block">
+                <Image
+                  src="/Logo.webp"
+                  alt="COES-WIO"
+                  width={360}
+                  height={120}
+                  className="h-24 w-auto object-contain md:h-28"
+                />
+              </a>
               <h3 className="subheading_text">Explore Sections</h3>
             </FadeUpInView>
             <p className="body_text mt-3 max-w-[560px]">
