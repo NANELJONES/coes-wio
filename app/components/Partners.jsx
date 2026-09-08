@@ -3,6 +3,11 @@
 import React, { useEffect, useState } from "react";
 import FadeUpInView from "./animations/FadeUpInView";
 
+const isHiddenPartner = (name = "") => {
+  const normalized = name.toLowerCase();
+  return normalized.includes("schmidt") || normalized.includes("schimdt");
+};
+
 const Partners = () => {
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +21,11 @@ const Partners = () => {
         const data = await response.json();
 
         if (data.success) {
-          setPartners(data.data);
+          setPartners(
+            (data.data || []).filter(
+              (partner) => !isHiddenPartner(partner.partnerName)
+            )
+          );
         } else {
           setError(data.message);
         }

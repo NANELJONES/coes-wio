@@ -164,9 +164,9 @@ const AboutUs = () => {
             </p>
           </FadeUpInView>
 
-          <p className="body_text" style={{ color: "var(--primary_color)" }}>
-            Supported by Schmidt Sciences for the next three years.
-          </p>
+          {/* <h4 className="font-semibold" style={{ color: "var(--primary_color)" }}>
+            Supported by US National Science Foundation for the first two(2) years.
+          </h4> */}
 
           <FadeUpInView>
             <div className="h-[220px] w-full overflow-hidden rounded-lg sm:h-[260px] md:h-[300px]">
@@ -175,9 +175,11 @@ const AboutUs = () => {
           </FadeUpInView>
 
           <div className="flex flex-col gap-[2em] w-full" style={{ color: "var(--primary_color)" }}>
+          
+          {/* 2025 school */}
             <div>
               <p className="font-semibold body_text">
-                The inaugural 2025 school was co-hosted in Kenya by:
+                The inaugural 2025 school was co-hosted in Mumbasa, Kenya from 21st to 27th of September 2025 by:
               </p>
               <div className="space-y-1 flex flex-col gap-1">
                 <DotListItem>Technical University of Mombasa (TUM)</DotListItem>
@@ -188,6 +190,31 @@ const AboutUs = () => {
               </div>
             </div>
 
+
+            {/* 2026 school */}
+            <div>
+              <p className="font-semibold body_text">
+                The 2026 school will be co-hosted in Dar es Salaam, Tanzania from 20th to 26th of September 2026 by:
+              </p>
+              <div className="space-y-1 flex flex-col gap-1">
+                <DotListItem>University of Dar es Salaam</DotListItem>
+
+{/* 
+                <DotListItem>Western Indian Ocean Marine Science Association (WIOMSA) </DotListItem>
+                <DotListItem>Intergovernmental Oceanographic Commission (IOC-UNESCO / IOC Africa),</DotListItem>
+             
+              */}
+             
+             
+             
+              </div>
+            </div>
+
+
+
+
+
+
             <div>
               <p className="font-semibold body_text pt-2 md:max-w-[80%]">
                 Additional regional and international collaborators included:
@@ -197,10 +224,14 @@ const AboutUs = () => {
                   Western Indian Ocean Marine Science Association (WIOMSA)
                 </DotListItem>
                 <DotListItem>
-                  Intergovernmental Oceanographic Commission (IOC-UNESCO)
+                Intergovernmental Oceanographic Commission (IOC-UNESCO / IOC Africa)
                 </DotListItem>
+                <DotListItem>Early Career Ocean Professionals (ECOP Africa)</DotListItem>
+                <DotListItem> University of Michigan </DotListItem>
               </div>
             </div>
+
+
 
             <div className="flex flex-col gap-6">
               <h2 className="subheading_text">Meet Our Founding Team</h2>
@@ -231,6 +262,12 @@ const AboutUs = () => {
               </p>
             </div>
           </div>
+
+
+
+
+
+          
         </div>
       </div>
 

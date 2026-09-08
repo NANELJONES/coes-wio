@@ -25,7 +25,7 @@ const Footer = () => {
             <FadeUpInView>
               <a href="#home" className="mb-4 inline-block">
                 <Image
-                  src="/Logo.webp"
+                  src="/logo.png"
                   alt="COES-WIO"
                   width={360}
                   height={120}

@@ -40,11 +40,11 @@ export default function Home() {
       </div>
       <div id="partners" className="bg-primary_color text-white px-4 md:px-8 lg:px-12 flex flex-col gap-4 md:gap-6 regular_div">
         <AppreciatedPartner />
-        <SchoolPartners />
-        <Partners />
-        <div id="affiliated">
+        {/* <SchoolPartners /> */}
+        {/* <Partners /> */}
+        {/* <div id="affiliated">
           <AffiliatedActions />
-        </div>
+        </div> */}
         <FeaturedMentions />
       </div>
       <SummerSchools />

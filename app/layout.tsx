@@ -15,6 +15,10 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "COES-WIO",
   description: "The Coastal Ocean Environment School in the Western Indian Ocean (COES-WIO) is a regional school strengthening ocean science capacity across East Africa and beyond.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

@@ -20,7 +20,7 @@ const Nav = () => {
       <div className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-4 md:px-8">
         <a href="/#home" className="flex items-center">
           <Image
-            src="/Logo.webp"
+            src="/logo.png"
             alt="COES-WIO"
             width={180}
             height={48}
