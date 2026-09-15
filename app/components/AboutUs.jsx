@@ -8,6 +8,7 @@ import AnimatedSentence from "./animations/AnimatedSentence";
 import ImageSwiper from "./ImageSwiper";
 import ImageSequence from "./ImageSequence";
 import dayImages from "../data/data";
+import Link from "next/link";
 
 const ABOUT_SWIPER_IMAGES = [
   dayImages["day 0"][0],
@@ -141,7 +142,7 @@ const AboutUs = () => {
           </div>
         </div>
 
-        <div className="flex p-4 backdrop-blur-sm z-10 flex-col gap-[3em]">
+        <div className="flex p-4 backdrop-blur-sm z-10 bg-white/60 flex-col gap-[3em]">
           <AnimatedSentence
             as="h2"
             className="font-semibold"
@@ -188,7 +189,14 @@ const AboutUs = () => {
                   Kenya Marine and Fisheries Research Institute (KMFRI)
                 </DotListItem>
               </div>
+ 
+          
             </div>
+
+
+            <Link className="py-[4em] flex flex-wrap " href='/FIRST COES-WIO REPORT 2025_FINAL REPORT_signed.pdf'><h4 className="animate-pulse">See the report from Technical University of Mombasa on COES-WIO 2025</h4>
+            <button className="border rounded-full p-4 hover:bg-primary_color hover:text-white transition-all duration-300">Download Report</button>
+            </Link>
 
 
             {/* 2026 school */}
