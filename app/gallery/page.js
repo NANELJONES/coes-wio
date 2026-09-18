@@ -1,5 +1,9 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import YoutubeContent from "../components/YoutubeContent";
+
+
+
 
 const PAGE_SIZE = 10;
 const VIDEO_EXT = /\.(m4v|mov|mp4|ogg|ogv|webm)(\?.*)?$/i;
@@ -131,6 +135,8 @@ export default function GalleryPage() {
           video highlights.
         </p>
       </header>
+
+      <YoutubeContent/>
 
       {albums.map((album, albumIndex) => {
         const visible = visibleCounts[albumIndex] ?? 0;
