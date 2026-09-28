@@ -1,5 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import YoutubeContent from "../components/YoutubeContent";
 
 
@@ -10,6 +11,8 @@ const VIDEO_EXT = /\.(m4v|mov|mp4|ogg|ogv|webm)(\?.*)?$/i;
 const isVideoUrl = (url = "") => VIDEO_EXT.test(url);
 
 export default function GalleryPage() {
+  const router = useRouter();
+  const [redirecting] = useState(true);
   const [albums, setAlbums] = useState([]);
   const [visibleCounts, setVisibleCounts] = useState({});
   const [hasNextEntry, setHasNextEntry] = useState(true);
@@ -17,12 +20,18 @@ export default function GalleryPage() {
   const [error, setError] = useState("");
   const sentinelRef = useRef(null);
   const initializedRef = useRef(false);
+  const redirectingRef = useRef(false);
 
   const albumsRef = useRef([]);
   const visibleCountsRef = useRef({});
   const entrySkipRef = useRef(0);
   const hasNextEntryRef = useRef(true);
   const isLoadingRef = useRef(false);
+
+  useEffect(() => {
+    redirectingRef.current = true;
+    router.replace("/");
+  }, [router]);
 
   const syncAlbums = useCallback((nextAlbums) => {
     albumsRef.current = nextAlbums;
@@ -99,12 +108,14 @@ export default function GalleryPage() {
   }, [loadNextEntry, syncVisibleCounts]);
 
   useEffect(() => {
+    if (redirectingRef.current) return;
     if (initializedRef.current) return;
     initializedRef.current = true;
     loadMore();
   }, [loadMore]);
 
   useEffect(() => {
+    if (redirectingRef.current) return;
     const node = sentinelRef.current;
     if (!node) return;
 
@@ -125,6 +136,8 @@ export default function GalleryPage() {
     () => albums.some((album) => album.media.length > 0),
     [albums]
   );
+
+  if (redirecting) return null;
 
   return (
     <main className="mx-auto w-full max-w-[2000px] px-4 py-20 text-primary_color md:px-8">

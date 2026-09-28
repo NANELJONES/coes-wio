@@ -13,7 +13,8 @@ const SECTION_LINKS = [
   { label: "Affiliated Actions", href: "#affiliated" },
   { label: "Contact Us", href: "#contact" },
   { label: "Schools", href: "/schools" },
-  { label: "Gallery", href: "/gallery" },
+  // { label: "Gallery", href: "/gallery" },
+  { label: "Testimonials", href: "/testimonials" },
 ];
 
 const Footer = () => {

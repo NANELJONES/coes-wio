@@ -1,12 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const SECTION_LINKS = [
   { label: "Home", href: "/#home" },
   { label: "About", href: "/#about" },
   { label: "Schools", href: "/schools" },
-  { label: "Gallery", href: "/gallery" },
+  // { label: "Gallery", href: "/gallery" },
+  { label: "Testimonials", href: "/testimonials" },
   { label: "Objectives", href: "/#objectives" },
   { label: "Partners", href: "/#partners" },
   { label: "Contact", href: "/#contact" },
@@ -18,7 +20,7 @@ const Nav = () => {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-primary_color/15 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-4 md:px-8">
-        <a href="/#home" className="flex items-center">
+        <Link href="/#home" className="flex items-center">
           <Image
             src="/logo.png"
             alt="COES-WIO"
@@ -27,7 +29,7 @@ const Nav = () => {
             className="h-10 w-auto object-contain"
             priority
           />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-5 xl:flex">
           {SECTION_LINKS.map((link) => (

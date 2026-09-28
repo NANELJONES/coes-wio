@@ -9,10 +9,12 @@ const FeaturedMentions = ({ title = "featured mentions" }) => {
       <h2 className="heading_text heading_text--light mb-4">
         {title}
       </h2>
+      {/* Client-requested statement removal; keep the old copy in source.
       <p className="body_text text-white/80 max-w-2xl mb-8">
         COES-WIO, COESSING, and affiliated programmes in the press and partner
         channels.
       </p>
+      */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {pressMentions.map((item) => (

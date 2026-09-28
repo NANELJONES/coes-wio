@@ -184,7 +184,7 @@ const Header = () => {
                   Applications for 2026 are closed
                 </span>
                 <a
-                  href="#partners"
+                  href="#contact"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 transition-colors hover:bg-primary_color/5"
                   style={{
                     borderColor: "var(--primary_color)",

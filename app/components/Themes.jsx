@@ -42,8 +42,8 @@ const PROGRAMME_THEMES = [
 
 const Themes = () => {
   return (
-    <section className="relative w-full overflow-clip bg-[#f2f2f2] text-primary_color">
-      <div className="sticky top-0 z-0 flex h-screen max-h-[800px] items-center justify-center px-4 md:px-8">
+    <section className="w-full bg-[#f2f2f2] px-4 py-12 text-primary_color md:px-8 lg:px-12">
+      <div className="mx-auto w-full max-w-[1200px]">
         <div className="mx-auto flex w-full max-w-[800px] flex-col items-center text-center">
           <FadeUpInView>
             <h2 className="heading_text font-light">programme themes</h2>
@@ -55,35 +55,31 @@ const Themes = () => {
           />
         </div>
       </div>
-      <div className="lg:absolute top-20 w-full px-10">
-        <div className="flex gap-4 text-left justify-between md:gap-8">
-          <FadeUpInView
-            as="p"
-            style={{ color: "var(--primary_color)" }}
-            className="max-w-[400px]"
-            delay={0.05}
-          >
-            Our programme themes deliver practical skills for ocean professionals.
-          </FadeUpInView>
-          <FadeUpInView
-            as="p"
-            style={{ color: "var(--primary_color)" }}
-            className="max-w-[400px]"
-            delay={0.12}
-          >
-            Training focuses on real-world challenges across the Western Indian Ocean.
-          </FadeUpInView>
-        </div>
+      <div className="mx-auto mt-6 grid w-full max-w-[1200px] grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+        <FadeUpInView
+          as="p"
+          style={{ color: "var(--primary_color)" }}
+          className="max-w-[400px]"
+          delay={0.05}
+        >
+          Our programme themes deliver practical skills for ocean professionals.
+        </FadeUpInView>
+        <FadeUpInView
+          as="p"
+          style={{ color: "var(--primary_color)" }}
+          className="max-w-[400px]"
+          delay={0.12}
+        >
+          Training focuses on real-world challenges across the Western Indian Ocean.
+        </FadeUpInView>
       </div>
-      <div className="relative z-10 mx-auto mt-[70vh] w-full max-w-[1200px] px-4 pb-20 md:px-8">
+      <div className="mx-auto mt-10 w-full max-w-[1200px]">
         <div className="grid grid-cols-1 items-center justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {PROGRAMME_THEMES.map((theme, index) => (
             <FadeUpInView
               key={theme.title}
               delay={index * 0.06}
-              className={`mb-6 mx-auto break-inside-avoid overflow-hidden bg-[#1383c7] text-white lg:mb-8 ${
-                index % 2 === 1 ? "lg:mt-[10em]" : ""
-              }`}
+              className="mx-auto mb-6 break-inside-avoid overflow-hidden bg-[#1383c7] text-white lg:mb-8"
             >
               <div
                 className="h-[220px] w-full bg-cover bg-center md:h-[260px]"

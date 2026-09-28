@@ -26,10 +26,12 @@ const SummerSchools = () => {
       <FadeUpInView>
         <h2 className="heading_text">affiliated summer schools</h2>
       </FadeUpInView>
+      {/* Client-requested copy removal; keep the source for reuse.
       <p className="body_text mt-4 max-w-2xl">
         COES-WIO sits within a wider family of summer schools and
         programmes advancing ocean science capacity.
       </p>
+      */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         {RELATED_PROGRAMS.map((program) => (
           <a

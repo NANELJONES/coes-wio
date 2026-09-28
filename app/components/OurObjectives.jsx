@@ -1,14 +1,7 @@
 "use client";
 
 import React from "react";
-import { FiBookOpen, FiTool, FiUsers } from "react-icons/fi";
 import FadeUpInView from "./animations/FadeUpInView";
-
-const OBJECTIVES_MAIN = [
-  { Icon: FiTool, text: "Strengthen Capacity." },
-  { Icon: FiUsers, text: "Build Networks." },
-  { Icon: FiBookOpen, text: "Advance Knowledge." },
-];
 
 const OBJECTIVES_DETAIL = [
   "Enhance regional capacity in ocean science, especially among early-career professionals",
@@ -30,9 +23,10 @@ const OurObjectives = () => {
         </FadeUpInView>
 
         <p className="body_text mt-6 mb-8 max-w-3xl">
-          Strengthen capacity and build networks advancing knowledge.
+          COES-WIO now serves as a growing network of institutions and professionals committed to strengthening marine science capacity in the region, building networks and advancing knowledge.
         </p>
 
+        {/* Requested removal: keep the objective tagline source for possible reuse.
         <div className="mb-10 flex flex-wrap gap-2 md:gap-3">
           {OBJECTIVES_MAIN.map((item) => (
             <div
@@ -44,6 +38,7 @@ const OurObjectives = () => {
             </div>
           ))}
         </div>
+        */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {OBJECTIVES_DETAIL.map((text, index) => (

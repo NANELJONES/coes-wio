@@ -4,13 +4,12 @@ import OurObjectives from "./components/OurObjectives";
 import OurImpact from "./components/OurImpact";
 import Themes from "./components/Themes";
 import AppreciatedPartner from "./components/AppreciatedPartner";
-import SchoolPartners from "./components/SchoolPartners";
-import Partners from "./components/Partners";
-import AffiliatedActions from "./components/AffiliatedActions";
-import FeaturedMentions from "./components/FeaturedMentions";
+// import SchoolPartners from "./components/SchoolPartners";
+// import Partners from "./components/Partners";
+// import AffiliatedActions from "./components/AffiliatedActions";
 import SummerSchools from "./components/SummerSchools";
 import YoutubeContent from "./components/YoutubeContent";
-import ClosingSection from "./components/ClosingSection";
+// import ClosingSection from "./components/ClosingSection";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 // import PopUp from "./components/PopUp";
@@ -45,7 +44,9 @@ export default function Home() {
         {/* <div id="affiliated">
           <AffiliatedActions />
         </div> */}
+        {/* COESSING-related mentions are omitted from the COES-WIO page while new COES-WIO links are pending.
         <FeaturedMentions />
+        */}
       </div>
       <SummerSchools />
       <YoutubeContent />

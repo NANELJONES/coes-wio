@@ -1,17 +1,17 @@
 import React from "react";
 import Image from "next/image";
-import { FiCircle } from "react-icons/fi";
 import FadeUpInView from "./animations/FadeUpInView";
 
 const OurImpact = () => {
   const quickFacts = [
-    { value: "75", label: "trained participants" },
-    { value: "17", label: "countries represented" },
+    { value: "135", label: "trained participants" },
+    { value: "20", label: "countries represented" },
   ];
 
-  const impactPoints = [
-    "Participation from early-career professionals, postgraduate and undergraduate students",
-    "Engagement of instructors and experts from across Africa and beyond",
+  const representedCountries = [
+    "USA", "Nigeria", "Tanzania", "Spain", "Kenya", "Canada", "Colombia",
+    "France", "Ghana", "Germany", "South Africa", "Madagascar", "Somalia",
+    "Mozambique", "Seychelles", "Mauritius", "Comoros", "Zambia", "Poland", "Egypt",
   ];
 
   return (
@@ -30,7 +30,7 @@ const OurImpact = () => {
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           <div>
             <p className="body_text max-w-[560px]">
-              The inaugural COES-WIO 2025 programme achieved:
+              The 2025 and 2026 COES-WIO programmes achieved:
             </p>
 
             <div className="mt-8 space-y-2">
@@ -51,25 +51,24 @@ const OurImpact = () => {
               ))}
             </div>
 
-            <ul className="mt-10 space-y-6">
-              {impactPoints.map((text, index) => (
-                <FadeUpInView as="li" key={text} className="flex items-start gap-3" delay={index * 0.08}>
-                  <FiCircle
-                    className="mt-2 h-3 w-3 shrink-0 fill-current"
-                    aria-hidden
-                  />
-                  <p className="body_text max-w-[640px]">
-                    {text}
-                  </p>
-                </FadeUpInView>
-              ))}
-            </ul>
+            <div className="mt-8">
+              <h3 className="mb-3 font-semibold">Countries represented</h3>
+              <ol className="grid grid-cols-2 gap-x-6 gap-y-1 sm:grid-cols-3">
+                {representedCountries.map((country, index) => (
+                  <li key={country} className="body_text">
+                    <span className="mr-2 text-primary_color/60">{index + 1}.</span>{country}
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
 
           <div className="flex flex-col gap-6 md:gap-8">
+            {/* Requested removal: retain this caption in source.
             <h3 className="subheading_text max-w-[560px]">
               We are a multiregional network in action
             </h3>
+            */}
             <FadeUpInView className="relative aspect-[16/7] w-full overflow-hidden" delay={0.08}>
               <Image
                 src="/day 2/comp-4.jpg"

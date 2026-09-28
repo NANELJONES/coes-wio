@@ -28,6 +28,17 @@ const ABOUT_LEFT_IMAGES = [
   dayImages["day 3"][3],
 ];
 
+const OrganizationLink = ({ href, children }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline decoration-current/50 underline-offset-2 hover:opacity-75"
+  >
+    {children}
+  </a>
+);
+
 const AboutUs = () => {
   return (
     <section className="w-full px-4 flex flex-col justify-center gap-[3em] justify-items-evenly py-12 md:px-8 lg:px-12 mx-auto regular_div">
@@ -155,13 +166,7 @@ const AboutUs = () => {
             style={{ backgroundColor: "var(--primary_color)" }}
           >
             <p className="body_text text-justify">
-              COES-WIO was initiated by the University of Michigan and three
-              Kenyan partners, building on successful programmes previously
-              delivered in West Africa. Planning began in 2023 under the
-              leadership of Prof. Brian Arbic. What started as a national
-              initiative quickly evolved into a regional programme following
-              strong interest from institutions and early-career professionals
-              across the Western Indian Ocean (WIO) region.
+              COES-WIO was initiated by <OrganizationLink href="https://umich.edu/">University of Michigan</OrganizationLink> Professor Brian Arbic and our three 2025 Kenyan partner institutions, building upon our successful Coastal Ocean Environment Summer School in Nigeria and Ghana (<OrganizationLink href="https://coessing.org/">COESSING</OrganizationLink>), which has been run for one week every year since 2015. What started as a national initiative quickly evolved into a regional programme following strong interest from institutions and early-career professionals across the Western Indian Ocean (WIO) region.
             </p>
           </FadeUpInView>
 
@@ -180,13 +185,13 @@ const AboutUs = () => {
           {/* 2025 school */}
             <div>
               <p className="font-semibold body_text">
-                The inaugural 2025 school was co-hosted in Mumbasa, Kenya from 21st to 27th of September 2025 by:
+                The inaugural 2025 school was co-hosted in Mombasa, Kenya from 21st to 27th of September 2025 by:
               </p>
               <div className="space-y-1 flex flex-col gap-1">
-                <DotListItem>Technical University of Mombasa (TUM)</DotListItem>
-                <DotListItem>Pwani University</DotListItem>
+                <DotListItem><OrganizationLink href="https://tum.ac.ke/">Technical University of Mombasa (TUM)</OrganizationLink></DotListItem>
+                <DotListItem><OrganizationLink href="https://www.pu.ac.ke/">Pwani University</OrganizationLink></DotListItem>
                 <DotListItem>
-                  Kenya Marine and Fisheries Research Institute (KMFRI)
+                  <OrganizationLink href="https://www.kmfri.go.ke/">Kenya Marine and Fisheries Research Institute (KMFRI)</OrganizationLink>
                 </DotListItem>
               </div>
  
@@ -205,16 +210,9 @@ const AboutUs = () => {
                 The 2026 school will be co-hosted in Dar es Salaam, Tanzania from 20th to 26th of September 2026 by:
               </p>
               <div className="space-y-1 flex flex-col gap-1">
-                <DotListItem>University of Dar es Salaam</DotListItem>
-
-{/* 
-                <DotListItem>Western Indian Ocean Marine Science Association (WIOMSA) </DotListItem>
-                <DotListItem>Intergovernmental Oceanographic Commission (IOC-UNESCO / IOC Africa),</DotListItem>
-             
-              */}
-             
-             
-             
+                <DotListItem><OrganizationLink href="https://www.udsm.ac.tz/">University of Dar es Salaam</OrganizationLink></DotListItem>
+                <DotListItem><OrganizationLink href="https://www.tafiri.go.tz/">Tanzania Fisheries Research Institute (TAFIRI)</OrganizationLink></DotListItem>
+                <DotListItem><OrganizationLink href="https://www.marineparks.go.tz/">Marine Parks and Reserves Unit (MPRU)</OrganizationLink></DotListItem>
               </div>
             </div>
 
@@ -228,19 +226,17 @@ const AboutUs = () => {
                 Additional regional and international collaborators included:
               </p>
               <div className="space-y-1 flex flex-col gap-1">
-                <DotListItem>
-                  Western Indian Ocean Marine Science Association (WIOMSA)
-                </DotListItem>
-                <DotListItem>
-                Intergovernmental Oceanographic Commission (IOC-UNESCO / IOC Africa)
-                </DotListItem>
-                <DotListItem>Early Career Ocean Professionals (ECOP Africa)</DotListItem>
-                <DotListItem> University of Michigan </DotListItem>
+                <DotListItem><OrganizationLink href="https://www.wiomsa.org/">Western Indian Ocean Marine Science Association (WIOMSA)</OrganizationLink> — 2025 and 2026</DotListItem>
+                <DotListItem><OrganizationLink href="https://www.ioc-africa.org/">IOC-UNESCO Sub-Commission for Africa and Adjacent Island States (IOC Africa)</OrganizationLink> — 2025 and 2026</DotListItem>
+                <DotListItem><OrganizationLink href="https://www.ecopdecade.org/africa/">Early Career Ocean Professionals (ECOP Africa)</OrganizationLink> — 2025 and 2026</DotListItem>
+                <DotListItem><OrganizationLink href="https://www.tafiri.go.tz/">Tanzania Fisheries Research Institute (TAFIRI)</OrganizationLink> — 2026</DotListItem>
+                <DotListItem><OrganizationLink href="https://www.marineparks.go.tz/">Marine Parks and Reserves Unit (MPRU)</OrganizationLink> — 2026</DotListItem>
+                <DotListItem><OrganizationLink href="https://soatanzania.or.tz/">Sustainable Ocean Alliance (SOA) Hub Tanzania</OrganizationLink> — 2026</DotListItem>
               </div>
             </div>
 
 
-
+            {/* Client-requested section removal; retain the founding team content in source.
             <div className="flex flex-col gap-6">
               <h2 className="subheading_text">Meet Our Founding Team</h2>
               <p className="body_text">
@@ -269,6 +265,7 @@ const AboutUs = () => {
                 Development.
               </p>
             </div>
+            */}
           </div>
 
 
@@ -279,6 +276,7 @@ const AboutUs = () => {
         </div>
       </div>
 
+      {/* Client-requested copy removal; retain the existing statement in source.
       <section className="lg:py-[5em] md:max-h-[500px] flex items-center justify-center">
         <AnimatedSentence
           as="h1"
@@ -286,6 +284,7 @@ const AboutUs = () => {
           text="COES-WIO now serves as a growing network of institutions and professionals committed to strengthening marine science capacity in the region."
         />
       </section>
+      */}
     </section>
   );
 };

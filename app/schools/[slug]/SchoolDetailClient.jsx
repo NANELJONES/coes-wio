@@ -64,19 +64,30 @@ export default function SchoolDetailClient({ slug }) {
   }, [slug]);
 
   const sections = useMemo(() => {
-    const items = [
-      { id: "about", title: "About" },
-      { id: "description", title: "Description" },
-      { id: "details", title: "Details" },
-      { id: "instructors", title: "Instructors" },
-      { id: "info", title: "Info" },
-      { id: "gallery", title: "Gallery" },
-    ];
-    if (transformedSchool?.partners?.length) {
+    const items = [];
+    if (transformedSchool?.excerpt) {
+      items.push({ id: "about", title: "Excerpt" });
+    }
+    if (transformedSchool?.description) {
+      items.push({ id: "description", title: "Description" });
+    }
+    if (school?.schoolDetails?.raw) {
+      items.push({ id: "details", title: "Details" });
+    }
+    if (transformedSchool?.instructors?.length > 0) {
+      items.push({ id: "instructors", title: "Instructors" });
+    }
+    if (transformedSchool?.country || transformedSchool?.status) {
+      items.push({ id: "info", title: "Info" });
+    }
+    if (transformedSchool?.gallery?.length > 0) {
+      items.push({ id: "gallery", title: "Gallery" });
+    }
+    if (transformedSchool?.partners?.length > 0) {
       items.push({ id: "partners", title: "Partners" });
     }
     return items;
-  }, [transformedSchool]);
+  }, [transformedSchool, school]);
 
   const previousSchools = useMemo(() => {
     if (!schools || schoolsLoading || !transformedSchool) return [];
@@ -116,6 +127,13 @@ export default function SchoolDetailClient({ slug }) {
     );
   }
 
+  const hasFactData =
+    transformedSchool.year ||
+    transformedSchool.status ||
+    transformedSchool.location ||
+    transformedSchool.country ||
+    transformedSchool.theme;
+
   return (
     <main className="w-full px-4 py-20 text-primary_color md:px-8 lg:px-12">
       <Link
@@ -126,28 +144,32 @@ export default function SchoolDetailClient({ slug }) {
       </Link>
 
       <div className="mt-6 flex gap-8">
-        <div className="hidden w-64 shrink-0 lg:block">
-          <div className="sticky top-20">
-            <SectionNavigation sections={sections} />
+        {sections.length > 0 ? (
+          <div className="hidden w-64 shrink-0 lg:block">
+            <div className="sticky top-20">
+              <SectionNavigation sections={sections} />
+            </div>
           </div>
-        </div>
+        ) : null}
 
         <article className="min-w-0 flex-1">
           <h1 className="m-0 text-3xl font-bold leading-tight md:text-4xl">
             {transformedSchool.schoolName}
           </h1>
 
-          <dl className="mt-5 grid grid-cols-2 gap-4 border-y border-primary_color/20 py-4 sm:grid-cols-3">
-            <Fact label="Year" value={transformedSchool.year} />
-            <Fact label="Status" value={formatLabel(transformedSchool.status)} />
-            <Fact
-              label="Location"
-              value={transformedSchool.location}
-              icon={<FiMapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />}
-            />
-            <Fact label="Country" value={formatLabel(transformedSchool.country)} />
-            <Fact label="Theme" value={transformedSchool.theme} />
-          </dl>
+          {hasFactData ? (
+            <dl className="mt-5 grid grid-cols-2 gap-4 border-y border-primary_color/20 py-4 sm:grid-cols-3">
+              <Fact label="Year" value={transformedSchool.year} />
+              <Fact label="Status" value={formatLabel(transformedSchool.status)} />
+              <Fact
+                label="Location"
+                value={transformedSchool.location}
+                icon={<FiMapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />}
+              />
+              <Fact label="Country" value={formatLabel(transformedSchool.country)} />
+              <Fact label="Theme" value={transformedSchool.theme} />
+            </dl>
+          ) : null}
 
           {transformedSchool.coverImage ? (
             <div className="relative mt-6 aspect-[16/9] max-h-[320px] w-full overflow-hidden bg-primary_color/10">
@@ -162,31 +184,27 @@ export default function SchoolDetailClient({ slug }) {
           ) : null}
 
           <div className="mt-8 flex flex-col gap-10">
-            <section id="about">
-              <h2 className="mb-2 text-lg font-semibold">Excerpt</h2>
-              {transformedSchool.excerpt ? (
+            {transformedSchool.excerpt ? (
+              <section id="about">
+                <h2 className="mb-2 text-lg font-semibold">Excerpt</h2>
                 <p className="m-0 text-sm leading-relaxed text-primary_color/90">
                   {transformedSchool.excerpt}
                 </p>
-              ) : (
-                <p className="m-0 text-sm text-primary_color/60">No excerpt available.</p>
-              )}
-            </section>
+              </section>
+            ) : null}
 
-            <section id="description">
-              <h2 className="mb-2 text-lg font-semibold">Description</h2>
-              {transformedSchool.description ? (
-                <p className="m-0 text-sm leading-relaxed text-primary_color/90">
+            {transformedSchool.description ? (
+              <section id="description">
+                <h2 className="mb-2 text-lg font-semibold">Description</h2>
+                <p className="m-0 whitespace-pre-line text-sm leading-relaxed text-primary_color/90">
                   {transformedSchool.description}
                 </p>
-              ) : (
-                <p className="m-0 text-sm text-primary_color/60">No description available.</p>
-              )}
-            </section>
+              </section>
+            ) : null}
 
-            <section id="details">
-              <h2 className="mb-3 text-lg font-semibold">Details</h2>
-              {school.schoolDetails?.raw ? (
+            {school.schoolDetails?.raw ? (
+              <section id="details">
+                <h2 className="mb-3 text-lg font-semibold">Details</h2>
                 <div className="max-w-none text-sm leading-relaxed">
                   <RichText
                     content={school.schoolDetails.raw}
@@ -337,14 +355,12 @@ export default function SchoolDetailClient({ slug }) {
                     }}
                   />
                 </div>
-              ) : (
-                <p className="m-0 text-sm text-primary_color/60">No details available.</p>
-              )}
-            </section>
+              </section>
+            ) : null}
 
-            <section id="instructors">
-              <h2 className="mb-3 text-lg font-semibold">Instructors</h2>
-              {transformedSchool.instructors.length > 0 ? (
+            {transformedSchool.instructors?.length > 0 ? (
+              <section id="instructors">
+                <h2 className="mb-3 text-lg font-semibold">Instructors</h2>
                 <div className="flex flex-wrap gap-2">
                   {transformedSchool.instructors.map((instructor, index) => (
                     <span
@@ -355,32 +371,38 @@ export default function SchoolDetailClient({ slug }) {
                     </span>
                   ))}
                 </div>
-              ) : (
-                <p className="m-0 text-sm text-primary_color/60">No instructors listed.</p>
-              )}
-            </section>
+              </section>
+            ) : null}
 
-            <section id="info">
-              <h2 className="mb-3 text-lg font-semibold">Info</h2>
-              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                <div className="border border-primary_color/30 p-4">
-                  <h3 className="mb-1 text-sm font-semibold">Country</h3>
-                  <p className="m-0 text-sm">
-                    {formatLabel(transformedSchool.country) || "Not specified"}
-                  </p>
+            {transformedSchool.country || transformedSchool.status ? (
+              <section id="info">
+                <h2 className="mb-3 text-lg font-semibold">Info</h2>
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                  {transformedSchool.country ? (
+                    <div className="border border-primary_color/30 p-4">
+                      <h3 className="mb-1 text-sm font-semibold">Country</h3>
+                      <p className="m-0 text-sm">
+                        {formatLabel(transformedSchool.country)}
+                      </p>
+                    </div>
+                  ) : null}
+                  {transformedSchool.status ? (
+                    <div className="border border-primary_color/30 p-4">
+                      <h3 className="mb-1 text-sm font-semibold">Status</h3>
+                      <p className="m-0 text-sm">
+                        {formatLabel(transformedSchool.status)}
+                      </p>
+                    </div>
+                  ) : null}
                 </div>
-                <div className="border border-primary_color/30 p-4">
-                  <h3 className="mb-1 text-sm font-semibold">Status</h3>
-                  <p className="m-0 text-sm">
-                    {formatLabel(transformedSchool.status) || "Not specified"}
-                  </p>
-                </div>
-              </div>
-            </section>
+              </section>
+            ) : null}
 
-            <section id="gallery">
-              <GallerySection images={transformedSchool.gallery} />
-            </section>
+            {transformedSchool.gallery?.length > 0 ? (
+              <section id="gallery">
+                <GallerySection images={transformedSchool.gallery} />
+              </section>
+            ) : null}
 
             {transformedSchool.partners?.length > 0 ? (
               <section id="partners">
@@ -409,27 +431,27 @@ export default function SchoolDetailClient({ slug }) {
 
         <aside className="hidden w-64 shrink-0 lg:block">
           <div className="sticky top-20">
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide">
-            Previous schools
-          </h2>
-          <div className="flex flex-col">
-            {schoolsLoading ? (
-              <p className="text-sm text-primary_color/60">Loading...</p>
-            ) : previousSchools.length > 0 ? (
-              previousSchools.map((prevSchool) => (
-                <Link
-                  key={prevSchool.slug}
-                  href={`/schools/${prevSchool.slug}`}
-                  className="border-b border-primary_color/25 py-2 text-sm transition-opacity hover:opacity-70"
-                >
-                  <span className="block font-medium">{prevSchool.schoolName}</span>
-                  <span className="text-xs text-primary_color/60">{prevSchool.year}</span>
-                </Link>
-              ))
-            ) : (
-              <p className="text-sm text-primary_color/60">No previous schools found</p>
-            )}
-          </div>
+            <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide">
+              Previous schools
+            </h2>
+            <div className="flex flex-col">
+              {schoolsLoading ? (
+                <p className="text-sm text-primary_color/60">Loading...</p>
+              ) : previousSchools.length > 0 ? (
+                previousSchools.map((prevSchool) => (
+                  <Link
+                    key={prevSchool.slug}
+                    href={`/schools/${prevSchool.slug}`}
+                    className="border-b border-primary_color/25 py-2 text-sm transition-opacity hover:opacity-70"
+                  >
+                    <span className="block font-medium">{prevSchool.schoolName}</span>
+                    <span className="text-xs text-primary_color/60">{prevSchool.year}</span>
+                  </Link>
+                ))
+              ) : (
+                <p className="text-sm text-primary_color/60">No previous schools found</p>
+              )}
+            </div>
           </div>
         </aside>
       </div>
