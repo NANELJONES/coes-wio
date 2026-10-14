@@ -207,12 +207,14 @@ const AboutUs = () => {
             {/* 2026 school */}
             <div>
               <p className="font-semibold body_text">
-                The 2026 school will be co-hosted in Dar es Salaam, Tanzania from 20th to 26th of September 2026 by:
+                The 2026 school was co-hosted in Dar es Salaam, Tanzania from 20th to 26th of September 2026 by:
               </p>
               <div className="space-y-1 flex flex-col gap-1">
                 <DotListItem><OrganizationLink href="https://www.udsm.ac.tz/">University of Dar es Salaam</OrganizationLink></DotListItem>
                 <DotListItem><OrganizationLink href="https://www.tafiri.go.tz/">Tanzania Fisheries Research Institute (TAFIRI)</OrganizationLink></DotListItem>
                 <DotListItem><OrganizationLink href="https://www.marineparks.go.tz/">Marine Parks and Reserves Unit (MPRU)</OrganizationLink></DotListItem>
+                <DotListItem><OrganizationLink href="https://soatanzania.or.tz/">Sustainable Ocean Alliance (SOA) Hub Tanzania</OrganizationLink> — 2026</DotListItem>
+             
               </div>
             </div>
 
@@ -230,8 +232,8 @@ const AboutUs = () => {
                 <DotListItem><OrganizationLink href="https://www.ioc-africa.org/">IOC-UNESCO Sub-Commission for Africa and Adjacent Island States (IOC Africa)</OrganizationLink> — 2025 and 2026</DotListItem>
                 <DotListItem><OrganizationLink href="https://www.ecopdecade.org/africa/">Early Career Ocean Professionals (ECOP Africa)</OrganizationLink> — 2025 and 2026</DotListItem>
                 <DotListItem><OrganizationLink href="https://www.tafiri.go.tz/">Tanzania Fisheries Research Institute (TAFIRI)</OrganizationLink> — 2026</DotListItem>
-                <DotListItem><OrganizationLink href="https://www.marineparks.go.tz/">Marine Parks and Reserves Unit (MPRU)</OrganizationLink> — 2026</DotListItem>
-                <DotListItem><OrganizationLink href="https://soatanzania.or.tz/">Sustainable Ocean Alliance (SOA) Hub Tanzania</OrganizationLink> — 2026</DotListItem>
+                {/* <DotListItem><OrganizationLink href="https://www.marineparks.go.tz/">Marine Parks and Reserves Unit (MPRU)</OrganizationLink> — 2026</DotListItem>
+                */}
               </div>
             </div>
 

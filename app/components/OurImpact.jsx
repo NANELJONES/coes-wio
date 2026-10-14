@@ -79,7 +79,7 @@ const OurImpact = () => {
               />
             </FadeUpInView>
             <FadeUpInView as="p" className="body_text max-w-[680px]" delay={0.12}>
-              Beyond training, COES-WIO fostered lasting professional networks
+              Beyond training, COES-WIO fosters lasting professional networks
               that will contribute to future research collaboration, policy
               engagement, and sustainable marine management throughout the
               Western Indian Ocean region.
