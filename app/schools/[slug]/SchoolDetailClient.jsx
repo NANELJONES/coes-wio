@@ -15,6 +15,30 @@ function formatLabel(value) {
   return String(value).charAt(0).toUpperCase() + String(value).slice(1).toLowerCase();
 }
 
+function LogoCardGrid({ items, emptyAlt }) {
+  if (!items?.length) return null;
+
+  return (
+    <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+      {items.map((item, index) => (
+        <div
+          key={`${item.name}-${index}`}
+          className="flex flex-col items-center justify-center gap-2 border border-primary_color/20 p-3 text-center"
+        >
+          {item.logo ? (
+            <img
+              src={item.logo}
+              alt={item.name || emptyAlt}
+              className="max-h-14 max-w-full object-contain"
+            />
+          ) : null}
+          <p className="m-0 text-xs font-medium">{item.name}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function Fact({ label, value, icon = null }) {
   if (!value) return null;
 
@@ -83,8 +107,11 @@ export default function SchoolDetailClient({ slug }) {
     if (transformedSchool?.gallery?.length > 0) {
       items.push({ id: "gallery", title: "Gallery" });
     }
-    if (transformedSchool?.partners?.length > 0) {
-      items.push({ id: "partners", title: "Partners" });
+    if (transformedSchool?.funders?.length > 0) {
+      items.push({ id: "funders", title: "Funders" });
+    }
+    if (transformedSchool?.schoolPartners?.length > 0) {
+      items.push({ id: "school-partners", title: "School partners" });
     }
     return items;
   }, [transformedSchool, school]);
@@ -404,26 +431,20 @@ export default function SchoolDetailClient({ slug }) {
               </section>
             ) : null}
 
-            {transformedSchool.partners?.length > 0 ? (
-              <section id="partners">
-                <h2 className="mb-3 text-lg font-semibold">Partners</h2>
-                <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-                  {transformedSchool.partners.map((partner, index) => (
-                    <div
-                      key={`${partner.name}-${index}`}
-                      className="flex flex-col items-center justify-center gap-2 border border-primary_color/20 p-3 text-center"
-                    >
-                      {partner.logo ? (
-                        <img
-                          src={partner.logo}
-                          alt={partner.name || "Partner"}
-                          className="max-h-14 max-w-full object-contain"
-                        />
-                      ) : null}
-                      <p className="m-0 text-xs font-medium">{partner.name}</p>
-                    </div>
-                  ))}
-                </div>
+            {transformedSchool.funders?.length > 0 ? (
+              <section id="funders">
+                <h2 className="mb-3 text-lg font-semibold">Funders</h2>
+                <LogoCardGrid items={transformedSchool.funders} emptyAlt="Funder" />
+              </section>
+            ) : null}
+
+            {transformedSchool.schoolPartners?.length > 0 ? (
+              <section id="school-partners">
+                <h2 className="mb-3 text-lg font-semibold">School partners</h2>
+                <LogoCardGrid
+                  items={transformedSchool.schoolPartners}
+                  emptyAlt="School partner"
+                />
               </section>
             ) : null}
           </div>
